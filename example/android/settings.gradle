@@ -1,0 +1,5 @@
+rootProject.name = 'example'
+include ':react-native-youtube-sdk'
+project(':react-native-youtube-sdk').projectDir = new File(rootProject.projectDir, '../../android/')
+
+include ':app'
