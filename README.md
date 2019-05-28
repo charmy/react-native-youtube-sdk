@@ -64,7 +64,7 @@
 
 ```javascript
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ToastAndroid } from "react-native";
 import YouTubePlayer from "react-native-youtube-sdk";
 
 export default class App extends React.Component {
