@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  ToastAndroid
-} from "react-native";
-
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ToastAndroid } from "react-native";
 import YouTubePlayer from "./lib/YouTubePlayer";
 
 export default class App extends React.Component {
@@ -19,33 +11,28 @@ export default class App extends React.Component {
             ref={ref => (this.youTubePlayer = ref)}
             videoId="t_aIEOqB8VM"
             autoPlay={true}
-            fullscreen={true}
+            fullscreen={false}
             showFullScreenButton={true}
             showSeekBar={true}
             showPlayPauseButton={true}
-            startTime={35}
+            startTime={5}
             style={{ width: "100%", height: 200 }}
-            onError={e => console.log(e)}
-            onChangeState={e => console.log(e)}
-            onChangeFullscreen={e => console.log(e)}
+            onReady={e => console.log("onReady", e.type)}
+            onError={e => console.log("onError", e.error)}
+            onChangeState={e => console.log("onChangeState", e.state)}
+            onChangeFullscreen={e => console.log("onChangeFullscreen", e.isFullscreen)}
           />
           <View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.youTubePlayer.seekTo(10)}
-            >
+            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.loadVideo("QdgRNIAdLi4")}>
+              <Text style={{ color: "#ffffff" }}>loadVideo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.seekTo(10)}>
               <Text style={{ color: "#ffffff" }}>SeekTo(10)</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.youTubePlayer.play()}
-            >
+            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.play()}>
               <Text style={{ color: "#ffffff" }}>Play</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => this.youTubePlayer.pause()}
-            >
+            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.pause()}>
               <Text style={{ color: "#ffffff" }}>Pause</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -75,12 +62,12 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   button: {
     backgroundColor: "red",
     margin: 12,
     padding: 12,
-    borderRadius: 4
-  }
+    borderRadius: 4,
+  },
 });

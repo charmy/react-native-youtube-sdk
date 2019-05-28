@@ -72,6 +72,7 @@ public class YouTubeView extends FrameLayout {
     youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
       @Override
       public void onReady(@Nonnull YouTubePlayer player) {
+        onReadyEvent("NORMAL");
         youTubePlayer = player;
 
         youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
@@ -122,6 +123,12 @@ public class YouTubeView extends FrameLayout {
     });
   }
 
+  public void onReadyEvent(String type) {
+    WritableMap map = Arguments.createMap();
+    map.putString("type", type);
+    context.getJSModule(RCTEventEmitter.class).receiveEvent(getId(), "onReady", map);
+  }
+
   public void onErrorEvent(String error) {
     WritableMap map = Arguments.createMap();
     map.putString("error", error);
@@ -158,6 +165,14 @@ public class YouTubeView extends FrameLayout {
     if (youTubePlayer == null) {
       return;
     }
+    youTubePlayer.pause();
+  }
+
+  public void loadVideo(String videoId, float startTime) {
+    if (youTubePlayer == null) {
+      return;
+    }
+    youTubePlayer.loadVideo(videoId, startTime);
     youTubePlayer.pause();
   }
 

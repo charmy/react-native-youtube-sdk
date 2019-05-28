@@ -15,6 +15,7 @@ public class YouTubeViewManager extends SimpleViewManager<YouTubeView> {
   private static final int COMMAND_SEEK_TO = 1;
   private static final int COMMAND_PLAY = 2;
   private static final int COMMAND_PAUSE = 3;
+  private static final int COMMAND_LOAD_VIDEO = 4;
 
   @Nonnull
   @Override
@@ -41,6 +42,9 @@ public class YouTubeViewManager extends SimpleViewManager<YouTubeView> {
       case COMMAND_PAUSE:
         view.pause();
         break;
+      case COMMAND_LOAD_VIDEO:
+        view.loadVideo(args.getString(0), args.getInt(1));
+        break;
       default:
         throw new IllegalArgumentException(String.format(
             "Unsupported command %d received by %s.",
@@ -55,7 +59,8 @@ public class YouTubeViewManager extends SimpleViewManager<YouTubeView> {
     return MapBuilder.of(
         "seekTo", COMMAND_SEEK_TO,
         "play", COMMAND_PLAY,
-        "pause", COMMAND_PAUSE
+        "pause", COMMAND_PAUSE,
+        "loadVideo", COMMAND_LOAD_VIDEO
     );
   }
 
@@ -63,6 +68,7 @@ public class YouTubeViewManager extends SimpleViewManager<YouTubeView> {
   @Override
   public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
     return MapBuilder.of(
+        "onReady", MapBuilder.of("registrationName", "onReady"),
         "onError", MapBuilder.of("registrationName", "onError"),
         "onChangeState", MapBuilder.of("registrationName", "onChangeState"),
         "onChangeFullscreen", MapBuilder.of("registrationName", "onChangeFullscreen")
