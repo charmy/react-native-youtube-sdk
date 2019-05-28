@@ -1,6 +1,8 @@
 
 # react-native-youtube-sdk
 
+[![npm version](https://badge.fury.io/js/react-native-youtube-sdk.svg)](https://badge.fury.io/js/react-native-youtube-sdk)
+
 ## Progress
 
 - [ ] ios
