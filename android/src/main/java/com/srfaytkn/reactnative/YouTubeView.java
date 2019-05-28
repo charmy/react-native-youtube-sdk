@@ -75,7 +75,7 @@ public class YouTubeView extends FrameLayout {
         onReadyEvent("NORMAL");
         youTubePlayer = player;
 
-        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
+        youTubePlayer.cueVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
 
         if (youTubePlayerProps.isAutoPlay()) {
           youTubePlayer.play();
@@ -172,8 +172,7 @@ public class YouTubeView extends FrameLayout {
     if (youTubePlayer == null) {
       return;
     }
-    youTubePlayer.loadVideo(videoId, startTime);
-    youTubePlayer.pause();
+    youTubePlayer.cueVideo(videoId, startTime);
   }
 
   public YouTubePlayerProps getYouTubePlayerProps() {
