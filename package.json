@@ -6,12 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srfaytkn/react-native-youtube-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/srfaytkn/react-native-youtube-sdk/issues"
+  },
+  "homepage": "https://github.com/srfaytkn/react-native-youtube-sdk#readme",
+  "author": "srfaytkn",
+  "license": "Apache 2.0",
   "keywords": [
     "react-native",
     "youtube"
   ],
-  "author": "",
-  "license": "Apache 2.0",
   "peerDependencies": {
     "react-native": "0.59.8"
   }
