@@ -49,24 +49,15 @@ public class FullscreenPlayerActivity extends AppCompatActivity {
   private void initYouTubePlayer() {
     youTubePlayerView.getPlayerUiController().showYouTubeButton(false);
     youTubePlayerView.enterFullScreen();
-    youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
-      youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(),
-          youTubePlayerProps.getTracker().getCurrentSecond());
-      youTubePlayer.addListener(youTubePlayerProps.getTracker());
-    });
-
-    youTubePlayerView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
-      @Override
-      public void onYouTubePlayerEnterFullScreen() {
-      }
-
-      @Override
-      public void onYouTubePlayerExitFullScreen() {
-        onBackPressed();
-      }
-    });
 
     youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+      @Override
+      public void onReady(@Nonnull YouTubePlayer youTubePlayer) {
+        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(),
+            youTubePlayerProps.getTracker().getCurrentSecond());
+        youTubePlayer.addListener(youTubePlayerProps.getTracker());
+      }
+
       @Override
       public void onError(@Nonnull YouTubePlayer youTubePlayer, @Nonnull PlayerError error) {
         youTubeView.onErrorEvent(String.valueOf(error));
@@ -80,6 +71,18 @@ public class FullscreenPlayerActivity extends AppCompatActivity {
         }
       }
     });
+
+    youTubePlayerView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
+      @Override
+      public void onYouTubePlayerEnterFullScreen() {
+      }
+
+      @Override
+      public void onYouTubePlayerExitFullScreen() {
+        onBackPressed();
+      }
+    });
+
   }
 
   @Override

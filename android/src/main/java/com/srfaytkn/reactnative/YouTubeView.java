@@ -60,26 +60,40 @@ public class YouTubeView extends FrameLayout {
 
   private void initYouTubePlayer() {
     youTubePlayerView.getPlayerUiController().showYouTubeButton(false);
-    youTubePlayerView.getYouTubePlayerWhenReady(youTubePlayer -> {
-      this.youTubePlayer = youTubePlayer;
 
-      youTubePlayerView.getPlayerUiController()
-          .showFullscreenButton(youTubePlayerProps.isShowFullScreenButton())
-          .showSeekBar(youTubePlayerProps.isShowSeekBar())
-          .showPlayPauseButton(youTubePlayerProps.isShowPlayPauseButton());
+    youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+      @Override
+      public void onReady(@Nonnull YouTubePlayer player) {
+        youTubePlayer = player;
 
-      youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
+        youTubePlayerView.getPlayerUiController()
+            .showFullscreenButton(youTubePlayerProps.isShowFullScreenButton())
+            .showSeekBar(youTubePlayerProps.isShowSeekBar())
+            .showPlayPauseButton(youTubePlayerProps.isShowPlayPauseButton());
 
-      if (youTubePlayerProps.isAutoPlay()) {
-        youTubePlayer.play();
-      } else {
-        youTubePlayer.pause();
+        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
+
+        if (youTubePlayerProps.isAutoPlay()) {
+          youTubePlayer.play();
+        } else {
+          youTubePlayer.pause();
+        }
+
+        if (youTubePlayerProps.isFullscreen()) {
+          youTubePlayerView.enterFullScreen();
+        }
+        youTubePlayer.addListener(youTubePlayerProps.getTracker());
       }
 
-      if (youTubePlayerProps.isFullscreen()) {
-        youTubePlayerView.enterFullScreen();
+      @Override
+      public void onError(@Nonnull YouTubePlayer youTubePlayer, @Nonnull PlayerError error) {
+        onErrorEvent(String.valueOf(error));
       }
-      youTubePlayer.addListener(youTubePlayerProps.getTracker());
+
+      @Override
+      public void onStateChange(@Nonnull YouTubePlayer youTubePlayer, @Nonnull PlayerState state) {
+        onChangeStateEvent(String.valueOf(state));
+      }
     });
 
     youTubePlayerView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
@@ -103,18 +117,6 @@ public class YouTubeView extends FrameLayout {
         }
       }
     });
-
-    youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-      @Override
-      public void onError(@Nonnull YouTubePlayer youTubePlayer, @Nonnull PlayerError error) {
-        onErrorEvent(String.valueOf(error));
-      }
-
-      @Override
-      public void onStateChange(@Nonnull YouTubePlayer youTubePlayer, @Nonnull PlayerState state) {
-        onChangeStateEvent(String.valueOf(state));
-      }
-    });
   }
 
   public void onErrorEvent(String error) {
@@ -136,14 +138,23 @@ public class YouTubeView extends FrameLayout {
   }
 
   public void seekTo(float time) {
+    if (youTubePlayer == null) {
+      return;
+    }
     youTubePlayer.seekTo(time);
   }
 
   public void play() {
+    if (youTubePlayer == null) {
+      return;
+    }
     youTubePlayer.play();
   }
 
   public void pause() {
+    if (youTubePlayer == null) {
+      return;
+    }
     youTubePlayer.pause();
   }
 
