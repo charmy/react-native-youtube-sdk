@@ -23,7 +23,7 @@ export default class App extends React.Component {
             onChangeFullscreen={e => console.log("onChangeFullscreen", e.isFullscreen)}
           />
           <View>
-            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.loadVideo("QdgRNIAdLi4")}>
+            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.loadVideo("QdgRNIAdLi4", 0)}>
               <Text style={{ color: "#ffffff" }}>loadVideo</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.seekTo(10)}>
