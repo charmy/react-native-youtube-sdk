@@ -93,6 +93,12 @@ public class YouTubeView extends FrameLayout {
       @Override
       public void onYouTubePlayerExitFullScreen() {
         onChangeFullscreenEvent(false);
+        seekTo(youTubePlayerProps.getTracker().getCurrentSecond());
+
+        if (youTubePlayerProps.getTracker().getVideoDuration() >
+            youTubePlayerProps.getTracker().getCurrentSecond()) {
+          play();
+        }
       }
     });
 
@@ -150,11 +156,5 @@ public class YouTubeView extends FrameLayout {
   public void onCloseFullscreenPlayer(YouTubePlayerProps youTubePlayerProps) {
     this.youTubePlayerProps = youTubePlayerProps;
     youTubePlayerView.exitFullScreen();
-    seekTo(youTubePlayerProps.getTracker().getCurrentSecond());
-
-    if (youTubePlayerProps.getTracker().getVideoDuration() >
-        youTubePlayerProps.getTracker().getCurrentSecond()) {
-      play();
-    }
   }
 }

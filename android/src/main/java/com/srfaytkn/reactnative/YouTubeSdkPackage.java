@@ -6,16 +6,17 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import java.util.Collections;
 import java.util.List;
+import javax.annotation.Nonnull;
 
 public class YouTubeSdkPackage implements ReactPackage {
 
   @Override
-  public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+  public List<NativeModule> createNativeModules(@Nonnull ReactApplicationContext reactContext) {
     return Collections.singletonList(new YouTubeSdkModule(reactContext));
   }
 
   @Override
-  public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+  public List<ViewManager> createViewManagers(@Nonnull ReactApplicationContext reactContext) {
     return Collections.singletonList(
         new YouTubeViewManager()
     );
