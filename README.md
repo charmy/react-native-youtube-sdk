@@ -7,7 +7,7 @@
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
 
 ## Note
-- your app needs to be using the androidx libraries instead of the old support libraries.
+- your android app needs to be using the androidx libraries instead of the old support libraries.
 
 ## Getting started
 
