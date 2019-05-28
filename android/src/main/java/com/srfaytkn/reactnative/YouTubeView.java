@@ -86,7 +86,9 @@ public class YouTubeView extends FrameLayout {
       @Override
       public void onYouTubePlayerEnterFullScreen() {
         onChangeFullscreenEvent(true);
-        youTubePlayer.pause();
+        if (youTubePlayer != null) {
+          youTubePlayer.pause();
+        }
         openFullscreenPlayer();
       }
 
