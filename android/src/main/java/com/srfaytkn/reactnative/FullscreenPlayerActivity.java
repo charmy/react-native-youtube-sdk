@@ -53,8 +53,13 @@ public class FullscreenPlayerActivity extends AppCompatActivity {
     youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
       @Override
       public void onReady(@Nonnull YouTubePlayer youTubePlayer) {
-        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(),
-            youTubePlayerProps.getTracker().getCurrentSecond());
+        float currentSecond = youTubePlayerProps.getTracker().getCurrentSecond();
+
+        if (currentSecond == 0) {
+          currentSecond = youTubePlayerProps.getStartTime();
+        }
+
+        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), currentSecond);
         youTubePlayer.addListener(youTubePlayerProps.getTracker());
       }
 

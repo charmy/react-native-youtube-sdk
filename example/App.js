@@ -19,7 +19,11 @@ export default class App extends React.Component {
             ref={ref => (this.youTubePlayer = ref)}
             videoId="QdgRNIAdLi4"
             autoPlay={true}
-            fullscreen={false}
+            fullscreen={true}
+            showFullScreenButton={true}
+            showSeekBar={true}
+            showPlayPauseButton={true}
+            startTime={35}
             style={{ width: "100%", height: 200 }}
             onError={e => console.log(e)}
             onChangeState={e => console.log(e)}

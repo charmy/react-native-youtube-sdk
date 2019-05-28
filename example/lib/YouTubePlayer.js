@@ -77,6 +77,7 @@ YouTubePlayer.propTypes = {
   startTime: PropTypes.number,
   showFullScreenButton: PropTypes.bool,
   showSeekBar: PropTypes.bool,
+  showPlayPauseButton: PropTypes.bool,
   onError: PropTypes.func,
   onChangeState: PropTypes.func,
   onChangeFullscreen: PropTypes.func

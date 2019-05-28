@@ -53,23 +53,26 @@ public class YouTubeView extends FrameLayout {
   }
 
   @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    youTubePlayerView.getPlayerUiController()
+        .showYouTubeButton(false)
+        .showFullscreenButton(youTubePlayerProps.isShowFullScreenButton())
+        .showSeekBar(youTubePlayerProps.isShowSeekBar())
+        .showPlayPauseButton(youTubePlayerProps.isShowPlayPauseButton());
+  }
+
+  @Override
   protected void onDetachedFromWindow() {
     youTubePlayerView.release();
     super.onDetachedFromWindow();
   }
 
   private void initYouTubePlayer() {
-    youTubePlayerView.getPlayerUiController().showYouTubeButton(false);
-
     youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
       @Override
       public void onReady(@Nonnull YouTubePlayer player) {
         youTubePlayer = player;
-
-        youTubePlayerView.getPlayerUiController()
-            .showFullscreenButton(youTubePlayerProps.isShowFullScreenButton())
-            .showSeekBar(youTubePlayerProps.isShowSeekBar())
-            .showPlayPauseButton(youTubePlayerProps.isShowPlayPauseButton());
 
         youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
 
