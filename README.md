@@ -1,7 +1,7 @@
 
 # react-native-youtube-sdk
 
-## Status
+## Progress
 
 - [ ] ios
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
