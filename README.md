@@ -139,9 +139,9 @@ const styles = StyleSheet.create({
   },
 });
 ```
-### API
+## API
 
-##### Props
+#### Props
 
 | Prop                 | Required | Type     | Default value | Description                                                                                    |
 |----------------------|----------|----------|---------------|------------------------------------------------------------------------------------------------|
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 | onChangeState        | false    | func     |               | triggered when the state changes (UNKNOWN/UNSTARTED/ENDED/PLAYING/PAUSED/BUFFERING/VIDEO_CUED) |
 | onChangeFullscreen   | false    | func     |               | triggered when the player enters or exits the fullscreen mode                                  |
 
-##### Methods
+#### Methods
 
 | Name             | Params             | Return  | Descriptipon                                                           |
 |------------------|--------------------|---------|------------------------------------------------------------------------|
