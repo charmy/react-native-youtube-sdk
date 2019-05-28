@@ -17,7 +17,7 @@ export default class App extends React.Component {
         <ScrollView>
           <YouTubePlayer
             ref={ref => (this.youTubePlayer = ref)}
-            videoId="QdgRNIAdLi4"
+            videoId="t_aIEOqB8VM"
             autoPlay={true}
             fullscreen={true}
             showFullScreenButton={true}
