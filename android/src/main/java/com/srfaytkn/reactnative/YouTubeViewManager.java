@@ -43,6 +43,8 @@ public class YouTubeViewManager extends SimpleViewManager<YouTubeView> {
         view.pause();
         break;
       case COMMAND_LOAD_VIDEO:
+        view.getYouTubePlayerProps().setVideoId(args.getString(0));
+        view.getYouTubePlayerProps().setStartTime(args.getInt(1));
         view.loadVideo(args.getString(0), args.getInt(1));
         break;
       default:
