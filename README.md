@@ -6,6 +6,9 @@
 - [ ] ios
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
 
+## Note
+- your app needs to be using the androidx libraries instead of the old support libraries.
+
 ## Getting started
 
 `$ npm install react-native-youtube-sdk --save`
