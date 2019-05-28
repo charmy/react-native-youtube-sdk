@@ -1,7 +1,9 @@
 
 # react-native-youtube-sdk
 
-## Status
+[![npm version](https://badge.fury.io/js/react-native-youtube-sdk.svg)](https://badge.fury.io/js/react-native-youtube-sdk)
+
+## Progress
 
 - [ ] ios
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
@@ -64,7 +66,7 @@
 
 ```javascript
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ToastAndroid } from "react-native";
 import YouTubePlayer from "react-native-youtube-sdk";
 
 export default class App extends React.Component {
