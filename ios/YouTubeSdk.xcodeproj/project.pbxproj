@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		AA21F25422A1005A003D37F8 /* YouTubeViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21F25322A1005A003D37F8 /* YouTubeViewManager.swift */; };
-		AA21F25622A10095003D37F8 /* YoutubeViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F25522A10095003D37F8 /* YoutubeViewManager.m */; };
+		AA21F25622A10095003D37F8 /* YouTubeViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F25522A10095003D37F8 /* YouTubeViewManager.m */; };
 		AA21F29322A10BB5003D37F8 /* YouTubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21F25722A100D4003D37F8 /* YouTubeView.swift */; };
 		AA21F29422A10BE2003D37F8 /* YTPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21F29022A10823003D37F8 /* YTPlayerView.swift */; };
-		B3E7B58A1CC2AC0600A0062D /* YouTubeSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* YouTubeSdk.m */; };
+		AA21F29A22A13D54003D37F8 /* YouTubeSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21F29922A13D54003D37F8 /* YouTubeSdk.swift */; };
+		AA21F29C22A1D18F003D37F8 /* YouTubeSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = AA21F29B22A1D18F003D37F8 /* YouTubeSdk.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,11 +31,11 @@
 		134814201AA4EA6300B7C361 /* libYouTubeSdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libYouTubeSdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA21F25222A1005A003D37F8 /* YouTubeSdk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YouTubeSdk-Bridging-Header.h"; sourceTree = "<group>"; };
 		AA21F25322A1005A003D37F8 /* YouTubeViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewManager.swift; sourceTree = "<group>"; };
-		AA21F25522A10095003D37F8 /* YoutubeViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YoutubeViewManager.m; sourceTree = "<group>"; };
+		AA21F25522A10095003D37F8 /* YouTubeViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YouTubeViewManager.m; sourceTree = "<group>"; };
 		AA21F25722A100D4003D37F8 /* YouTubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeView.swift; sourceTree = "<group>"; };
 		AA21F29022A10823003D37F8 /* YTPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTPlayerView.swift; sourceTree = "<group>"; };
-		B3E7B5881CC2AC0600A0062D /* YouTubeSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTubeSdk.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* YouTubeSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeSdk.m; sourceTree = "<group>"; };
+		AA21F29922A13D54003D37F8 /* YouTubeSdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeSdk.swift; sourceTree = "<group>"; };
+		AA21F29B22A1D18F003D37F8 /* YouTubeSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YouTubeSdk.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +60,12 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				AA21F29022A10823003D37F8 /* YTPlayerView.swift */,
+				AA21F29B22A1D18F003D37F8 /* YouTubeSdk.m */,
+				AA21F29922A13D54003D37F8 /* YouTubeSdk.swift */,
 				AA21F25722A100D4003D37F8 /* YouTubeView.swift */,
-				AA21F25522A10095003D37F8 /* YoutubeViewManager.m */,
+				AA21F25522A10095003D37F8 /* YouTubeViewManager.m */,
 				AA21F25322A1005A003D37F8 /* YouTubeViewManager.swift */,
-				B3E7B5881CC2AC0600A0062D /* YouTubeSdk.h */,
-				B3E7B5891CC2AC0600A0062D /* YouTubeSdk.m */,
+				AA21F29022A10823003D37F8 /* YTPlayerView.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				AA21F25222A1005A003D37F8 /* YouTubeSdk-Bridging-Header.h */,
 			);
@@ -130,8 +131,9 @@
 				AA21F29422A10BE2003D37F8 /* YTPlayerView.swift in Sources */,
 				AA21F29322A10BB5003D37F8 /* YouTubeView.swift in Sources */,
 				AA21F25422A1005A003D37F8 /* YouTubeViewManager.swift in Sources */,
-				AA21F25622A10095003D37F8 /* YoutubeViewManager.m in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* YouTubeSdk.m in Sources */,
+				AA21F25622A10095003D37F8 /* YouTubeViewManager.m in Sources */,
+				AA21F29C22A1D18F003D37F8 /* YouTubeSdk.m in Sources */,
+				AA21F29A22A13D54003D37F8 /* YouTubeSdk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

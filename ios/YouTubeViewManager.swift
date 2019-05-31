@@ -53,15 +53,4 @@ class YouTubeViewManager: RCTViewManager {
         }
     }
     
-    
-    @objc
-    func decrement(
-        _ resolve: RCTPromiseResolveBlock,
-        rejecter reject: RCTPromiseRejectBlock
-        ) -> Void {
-        
-        resolve("count was decremented")
-    }
-    
-    
 }

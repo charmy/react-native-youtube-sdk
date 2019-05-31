@@ -30,9 +30,3 @@ RCT_EXTERN_METHOD(loadVideo:(nonnull NSNumber *)node
                   seconds:(nonnull NSInteger *)seconds)
 
 @end
-
-
-@interface RCT_EXTERN_MODULE(YouTubeSdk, NSObject)
-
-
-@end

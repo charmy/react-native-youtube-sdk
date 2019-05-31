@@ -9,7 +9,7 @@
 
 import UIKit
 
-class YouTubeView: UIView {
+@objc class YouTubeView: UIView {
     
     @objc var onError: RCTDirectEventBlock?
     
@@ -30,12 +30,14 @@ class YouTubeView: UIView {
     @objc var fullscreen: Bool = false {
         didSet{
             playerVars["fs"] = (fullscreen) ? "1" : "0";
+            playerVars["playsinline"] = (fullscreen) ? "0" : "1";
         }
     }
     
     @objc var showSeekBar: Bool = false {
         didSet{
             playerVars["controls"] = (showSeekBar) ? "1" : "0";
+            self.player.isUserInteractionEnabled = showSeekBar
         }
     }
     
@@ -49,7 +51,6 @@ class YouTubeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.player.isUserInteractionEnabled = false
         self.addSubview(player)
     }
     
@@ -91,6 +92,14 @@ class YouTubeView: UIView {
     
     @objc func LoadVideo(videoId: NSString, seconds: NSInteger) {
          _ = player.load(videoId: videoId as String,  playerVars: playerVars)
+    }
+    
+    @objc func getCurrentTime() -> NSInteger{
+        return NSInteger(player.currentTime)
+    }
+    
+    @objc func getVideoDuration() -> NSInteger{
+        return NSInteger(player.duration)
     }
 }
 
