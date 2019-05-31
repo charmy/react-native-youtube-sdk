@@ -26,4 +26,42 @@ class YouTubeViewManager: RCTViewManager {
         }
     }
     
+    @objc func pause(_ node: NSNumber) {
+        DispatchQueue.main.async {
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+                ) as! YouTubeView
+            component.pause()
+        }
+    }
+    
+    @objc func seekTo(_ node: NSNumber, seconds:NSInteger) {
+        DispatchQueue.main.async {
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+                ) as! YouTubeView
+            component.seekTo(seconds: seconds)
+        }
+    }
+    
+    @objc func loadVideo(_ node: NSNumber, videoId:NSString, seconds:NSInteger) {
+        DispatchQueue.main.async {
+            let component = self.bridge.uiManager.view(
+                forReactTag: node
+                ) as! YouTubeView
+            component.LoadVideo(videoId: videoId, seconds: seconds)
+        }
+    }
+    
+    
+    @objc
+    func decrement(
+        _ resolve: RCTPromiseResolveBlock,
+        rejecter reject: RCTPromiseRejectBlock
+        ) -> Void {
+        
+        resolve("count was decremented")
+    }
+    
+    
 }
