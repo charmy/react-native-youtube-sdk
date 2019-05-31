@@ -10,7 +10,7 @@ export default class App extends React.Component {
           <YouTubePlayer
             ref={ref => (this.youTubePlayer = ref)}
             videoId="6Ofd2G89qJY"
-            autoPlay={true}
+            autoPlay={false}
             fullscreen={false}
             showFullScreenButton={false}
             showSeekBar={false}
