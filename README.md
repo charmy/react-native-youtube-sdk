@@ -3,6 +3,8 @@
 
 [![npm version](https://badge.fury.io/js/react-native-youtube-sdk.svg)](https://badge.fury.io/js/react-native-youtube-sdk)
 
+![Example Gif](https://sharelist2me.s3-eu-west-1.amazonaws.com/repo/example.gif)
+
 ## Progress
 
 - [x] ios (implemented %80 - onReady, didChangeTo, onChangeState, onChangeFullscreen not implemented yet) 
