@@ -5,12 +5,12 @@
 
 ## Progress
 
-- [ ] ios
+- [x] ios (implemented %80 - onReady, didChangeTo, onChangeState, onChangeFullscreen not implemented yet) 
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
 
 ## Note
 - your android app needs to be using the androidx libraries instead of the old support libraries.
-
+- iOS under development but you can use
 ## Getting started
 
 `$ npm install react-native-youtube-sdk --save`

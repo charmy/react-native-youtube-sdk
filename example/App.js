@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ToastAndroid } from "react-native";
+import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ToastAndroid , Alert} from "react-native";
 import YouTubePlayer from "./lib/YouTubePlayer";
 
 export default class App extends React.Component {
@@ -9,11 +9,11 @@ export default class App extends React.Component {
         <ScrollView>
           <YouTubePlayer
             ref={ref => (this.youTubePlayer = ref)}
-            videoId="t_aIEOqB8VM"
+            videoId="6Ofd2G89qJY"
             autoPlay={true}
             fullscreen={false}
-            showFullScreenButton={true}
-            showSeekBar={true}
+            showFullScreenButton={false}
+            showSeekBar={false}
             showPlayPauseButton={true}
             startTime={5}
             style={{ width: "100%", height: 200 }}
@@ -23,7 +23,7 @@ export default class App extends React.Component {
             onChangeFullscreen={e => console.log("onChangeFullscreen", e.isFullscreen)}
           />
           <View>
-            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.loadVideo("QdgRNIAdLi4", 0)}>
+            <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.loadVideo("UXlRydNkByU", 0)}>
               <Text style={{ color: "#ffffff" }}>loadVideo</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => this.youTubePlayer.seekTo(10)}>
@@ -39,7 +39,7 @@ export default class App extends React.Component {
               style={styles.button}
               onPress={async () => {
                 const currentTime = await this.youTubePlayer.getCurrentTime();
-                ToastAndroid.show(String(currentTime), ToastAndroid.SHORT);
+                Alert.alert(String(currentTime), String(currentTime))
               }}
             >
               <Text style={{ color: "#ffffff" }}>getCurrentTime</Text>
@@ -48,7 +48,7 @@ export default class App extends React.Component {
               style={styles.button}
               onPress={async () => {
                 const duration = await this.youTubePlayer.getVideoDuration();
-                ToastAndroid.show(String(duration), ToastAndroid.SHORT);
+               Alert.alert(String(duration), String(duration))
               }}
             >
               <Text style={{ color: "#ffffff" }}>getVideoDuration</Text>
