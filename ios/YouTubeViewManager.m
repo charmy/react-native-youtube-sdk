@@ -17,7 +17,11 @@ RCT_EXPORT_VIEW_PROPERTY(showSeekBar, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(fullscreen, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(videoId, NSString)
 
+RCT_EXPORT_VIEW_PROPERTY(onReady, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onError, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onChangeState, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onChangeFullscreen, RCTDirectEventBlock)
+
 
 RCT_EXTERN_METHOD(play:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(pause:(nonnull NSNumber *)node)

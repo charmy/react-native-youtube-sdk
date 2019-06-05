@@ -916,6 +916,7 @@ open class YTPlayerView: UIView {
         }
     }
     
+    
     /**
      * Private helper method to load an iframe player with the given player parameters.
      *
@@ -959,6 +960,8 @@ open class YTPlayerView: UIView {
         self.webView.scalesPageToFit = true
 
         let embedHTMLTemplate: String!
+        
+
         
         if let url = NSURL(string: "https://charmy.app/YTPlayer.html") {
             

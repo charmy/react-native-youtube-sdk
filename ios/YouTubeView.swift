@@ -12,6 +12,9 @@ import UIKit
 @objc class YouTubeView: UIView {
     
     @objc var onError: RCTDirectEventBlock?
+    @objc var onReady: RCTDirectEventBlock?
+    @objc var onChangeState: RCTDirectEventBlock?
+    @objc var onChangeFullscreen: RCTDirectEventBlock?
     
     @objc var autoPlay: Bool = false;
     
@@ -52,6 +55,18 @@ import UIKit
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(player)
+        
+        // listen for videos playing in fullscreen
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidEnterFullscreen(_:)), name: UIWindow.didBecomeVisibleNotification, object: self.window)
+        
+        // listen for videos stopping to play in fullscreen
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidLeaveFullscreen(_:)), name: UIWindow.didBecomeHiddenNotification, object: self.window)
+    }
+    
+    deinit{
+        // remove video listeners
+        NotificationCenter.default.removeObserver(self, name: UIWindow.didBecomeVisibleNotification, object: self.window)
+        NotificationCenter.default.removeObserver(self, name: UIWindow.didBecomeHiddenNotification, object: self.window)
     }
     
     @objc func reactSetFrame(frame:CGRect) {
@@ -101,17 +116,46 @@ import UIKit
     @objc func getVideoDuration() -> NSInteger{
         return NSInteger(player.duration)
     }
+    
+    @objc func onDidEnterFullscreen(_ notification: Notification) {
+        print("video is now playing in fullscreen")
+        onChangeFullscreen!(["isFullscreen" : true])
+    }
+    
+    @objc func onDidLeaveFullscreen(_ notification: Notification) {
+        print("video has stopped playing in fullscreen")
+        onChangeFullscreen!(["isFullscreen" : false])
+    }
 }
 
 extension YouTubeView: YTPlayerViewDelegate{
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        //player is ready to go
+        onReady!(["type" : "ready"])
         if autoPlay{
             playerView.playVideo()
         }
     }
     
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState){
-        print(state)
+        onChangeState!(
+        ["state" :
+            {
+                switch state {
+                case .unstarted:  return "unstarted"
+                case .ended:  return "ended"
+                case .playing:  return "playing"
+                case .paused:  return"paused"
+                case .buffering:  return "buffering"
+                case .queued:  return "queued"
+                case .unknown:  return "unknown"
+                }
+            }()
+        ])
+    }
+    
+    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
+        onError!(["error" : error.rawValue])
     }
     
 }

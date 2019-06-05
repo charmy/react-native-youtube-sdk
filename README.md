@@ -7,7 +7,7 @@
 
 ## Progress
 
-- [x] ios (implemented %80 - onReady, didChangeTo, onChangeState, onChangeFullscreen not implemented yet) 
+- [x] ios (implemented %99) 
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
 
 ## Note
