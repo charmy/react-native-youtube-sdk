@@ -1,6 +1,6 @@
 {
   "name": "react-native-youtube-sdk",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "YouTube SDK for react native",
   "main": "index.js",
   "scripts": {
