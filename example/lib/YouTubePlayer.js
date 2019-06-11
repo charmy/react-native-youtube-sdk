@@ -74,7 +74,7 @@ export default class YouTubePlayer extends React.Component {
 }
 
 YouTubePlayer.propTypes = {
-  videoId: PropTypes.string.isRequired,
+  videoId: PropTypes.string,
   autoPlay: PropTypes.bool,
   fullscreen: PropTypes.bool,
   startTime: PropTypes.number,

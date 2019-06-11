@@ -74,19 +74,23 @@ public class YouTubeView extends FrameLayout {
       public void onReady(@Nonnull YouTubePlayer player) {
         onReadyEvent("NORMAL");
         youTubePlayer = player;
+        youTubePlayer.addListener(youTubePlayerProps.getTracker());
 
-        youTubePlayer.cueVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
+        if (youTubePlayerProps.getVideoId() == null) {
+          return;
+        }
 
         if (youTubePlayerProps.isAutoPlay()) {
-          youTubePlayer.play();
+          youTubePlayer
+              .loadVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
         } else {
-          youTubePlayer.pause();
+          youTubePlayer
+              .cueVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
         }
 
         if (youTubePlayerProps.isFullscreen()) {
           youTubePlayerView.enterFullScreen();
         }
-        youTubePlayer.addListener(youTubePlayerProps.getTracker());
       }
 
       @Override
@@ -172,7 +176,12 @@ public class YouTubeView extends FrameLayout {
     if (youTubePlayer == null) {
       return;
     }
-    youTubePlayer.cueVideo(videoId, startTime);
+
+    if (youTubePlayerProps.isAutoPlay()) {
+      youTubePlayer.loadVideo(videoId, startTime);
+    } else {
+      youTubePlayer.cueVideo(videoId, startTime);
+    }
   }
 
   public YouTubePlayerProps getYouTubePlayerProps() {
