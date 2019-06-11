@@ -62,12 +62,6 @@ public class YouTubeView extends FrameLayout {
         .showPlayPauseButton(youTubePlayerProps.isShowPlayPauseButton());
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    youTubePlayerView.release();
-    super.onDetachedFromWindow();
-  }
-
   private void initYouTubePlayer() {
     youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
       @Override
