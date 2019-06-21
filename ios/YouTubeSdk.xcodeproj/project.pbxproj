@@ -36,8 +36,6 @@
 		AA21F29022A10823003D37F8 /* YTPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YTPlayerView.swift; sourceTree = "<group>"; };
 		AA21F29922A13D54003D37F8 /* YouTubeSdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeSdk.swift; sourceTree = "<group>"; };
 		AA21F29B22A1D18F003D37F8 /* YouTubeSdk.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YouTubeSdk.m; sourceTree = "<group>"; };
-		AAE6AA9122A259800057733E /* YTPlayer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
-		AAE6AA9322A25A3B0057733E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +60,6 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				AAE6AA9322A25A3B0057733E /* Media.xcassets */,
-				AAE6AA9122A259800057733E /* YTPlayer.html */,
 				AA21F29B22A1D18F003D37F8 /* YouTubeSdk.m */,
 				AA21F29922A13D54003D37F8 /* YouTubeSdk.swift */,
 				AA21F25722A100D4003D37F8 /* YouTubeView.swift */,
@@ -85,6 +81,7 @@
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
+				AAD6E25422AE2D14002378E9 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -115,6 +112,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -126,6 +124,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAD6E25422AE2D14002378E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {

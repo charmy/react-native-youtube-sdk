@@ -22,7 +22,6 @@ RCT_EXPORT_VIEW_PROPERTY(onError, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onChangeState, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onChangeFullscreen, RCTDirectEventBlock)
 
-
 RCT_EXTERN_METHOD(play:(nonnull NSNumber *)node)
 RCT_EXTERN_METHOD(pause:(nonnull NSNumber *)node)
 

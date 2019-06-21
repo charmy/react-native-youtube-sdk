@@ -97,40 +97,41 @@ open class YTPlayerView: UIView {
     open var delegate: YTPlayerViewDelegate?
     
     var originURL: URL!
+    var playerURL: NSURL!
     var initialLoadingView: UIView?
     
-//    /**
-//     * This method loads the player with the given video ID.
-//     * This is a convenience method for calling YTPlayerView::loadPlayerWithVideoId:withPlayerVars:
-//     * without player variables.
-//     *
-//     * This method reloads the entire contents of the UIWebView and regenerates its HTML contents.
-//     * To change the currently loaded video without reloading the entire UIWebView, use the
-//     * YTPlayerView::cueVideoById:startSeconds:suggestedQuality: family of methods.
-//     *
-//     * @param videoId The YouTube video ID of the video to load in the player view.
-//     * @return YES if player has been configured correctly, NO otherwise.
-//     */
-//    public func load(videoId: String) -> Bool{
-//        return self.loadWithVideo(id: id, playerVars: nil)
-//    }
-//
-//    /**
-//     * This method loads the player with the given playlist ID.
-//     * This is a convenience method for calling YTPlayerView::loadWithPlaylistId:withPlayerVars:
-//     * without player variables.
-//     *
-//     * This method reloads the entire contents of the UIWebView and regenerates its HTML contents.
-//     * To change the currently loaded video without reloading the entire UIWebView, use the
-//     * YTPlayerView::cuePlaylistByPlaylistId:index:startSeconds:suggestedQuality:
-//     * family of methods.
-//     *
-//     * @param playlistId The YouTube playlist ID of the playlist to load in the player view.
-//     * @return YES if player has been configured correctly, NO otherwise.
-//     */
-//    public func load(playlistId: String) -> Bool{
-//        return self.loadWithPlaylist(playlistId: playlistId, playerVars: nil)
-//    }
+    //    /**
+    //     * This method loads the player with the given video ID.
+    //     * This is a convenience method for calling YTPlayerView::loadPlayerWithVideoId:withPlayerVars:
+    //     * without player variables.
+    //     *
+    //     * This method reloads the entire contents of the UIWebView and regenerates its HTML contents.
+    //     * To change the currently loaded video without reloading the entire UIWebView, use the
+    //     * YTPlayerView::cueVideoById:startSeconds:suggestedQuality: family of methods.
+    //     *
+    //     * @param videoId The YouTube video ID of the video to load in the player view.
+    //     * @return YES if player has been configured correctly, NO otherwise.
+    //     */
+    //    public func load(videoId: String) -> Bool{
+    //        return self.loadWithVideo(id: id, playerVars: nil)
+    //    }
+    //
+    //    /**
+    //     * This method loads the player with the given playlist ID.
+    //     * This is a convenience method for calling YTPlayerView::loadWithPlaylistId:withPlayerVars:
+    //     * without player variables.
+    //     *
+    //     * This method reloads the entire contents of the UIWebView and regenerates its HTML contents.
+    //     * To change the currently loaded video without reloading the entire UIWebView, use the
+    //     * YTPlayerView::cuePlaylistByPlaylistId:index:startSeconds:suggestedQuality:
+    //     * family of methods.
+    //     *
+    //     * @param playlistId The YouTube playlist ID of the playlist to load in the player view.
+    //     * @return YES if player has been configured correctly, NO otherwise.
+    //     */
+    //    public func load(playlistId: String) -> Bool{
+    //        return self.loadWithPlaylist(playlistId: playlistId, playerVars: nil)
+    //    }
     
     /**
      * This method loads the player with the given video ID and player variables. Player variables
@@ -274,7 +275,7 @@ open class YTPlayerView: UIView {
         let command = String(format: "player.cueVideoById('%@', %@, '%@');", videoId, startSecondsValue, qualityValue)
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-
+    
     /**
      * Cues a given video by its video ID for playback starting and ending at the given times
      * with the suggested quality. Cueing loads a video, but does not start video playback. This
@@ -310,7 +311,7 @@ open class YTPlayerView: UIView {
         let command = String(format: "player.loadVideoById('%@', %@, '%@');", videoId, startSecondsValue, qualityValue)
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-   
+    
     /**
      * Loads a given video by its video ID for playback starting and ending at the given times
      * with the suggested quality. Loading a video both loads it and begins playback. This method
@@ -329,7 +330,7 @@ open class YTPlayerView: UIView {
         let command = String(format: "player.loadVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});", videoId, startSecondsValue, endSecondsValue, qualityValue)
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-   
+    
     /**
      * Cues a given video by its URL on YouTube.com for playback starting at the given time
      * and with the suggested quality. Cueing loads a video, but does not start video playback.
@@ -346,7 +347,7 @@ open class YTPlayerView: UIView {
         let command = String(format: "player.cueVideoByUrl('%@', %@, '%@');", videoUrl, startSecondsValue, qualityValue)
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-   
+    
     /**
      * Cues a given video by its URL on YouTube.com for playback starting at the given time
      * and with the suggested quality. Cueing loads a video, but does not start video playback.
@@ -365,7 +366,7 @@ open class YTPlayerView: UIView {
         let command = String(format: "player.cueVideoByUrl('%@', %@, %@, '%@');", videoUrl, startSecondsValue, endSecondsValue, qualityValue)
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-   
+    
     /**
      * Loads a given video by its video ID for playback starting at the given time
      * with the suggested quality. Loading a video both loads it and begins playback. This method
@@ -382,7 +383,7 @@ open class YTPlayerView: UIView {
         let command = String(format: "player.loadVideoByUrl('%@', %@, '%@');", videoUrl, startSecondsValue, qualityValue)
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-   
+    
     /**
      * Loads a given video by its video ID for playback starting and ending at the given times
      * with the suggested quality. Loading a video both loads it and begins playback. This method
@@ -425,7 +426,7 @@ open class YTPlayerView: UIView {
         self.cuePlaylist(cueingString: playlistIdString, index: index, startSeconds: startSeconds, suggestedQuality: suggestedQuality)
     }
     
-  
+    
     /**
      * Cues a playlist of videos with the given video IDs. The |index| parameter specifies the
      * 0-indexed position of the first video to play, starting at the given time and with the
@@ -441,7 +442,7 @@ open class YTPlayerView: UIView {
     public func cue(videoIds: [String], index: Int, startSeconds: Float, suggestedQuality: YTPlaybackQuality){
         self.cuePlaylist(cueingString: self.stringFromVideoIdArray(videoIds: videoIds), index: index, startSeconds: startSeconds, suggestedQuality: suggestedQuality)
     }
-
+    
     /**
      * Loads a given playlist with the given ID. The |index| parameter specifies the 0-indexed
      * position of the first video to play, starting at the given time and with the
@@ -458,7 +459,7 @@ open class YTPlayerView: UIView {
         let playlistIdString = String(format: "'%@'", playlistId)
         self.loadPlaylist(cueingString: playlistIdString, index: index, startSeconds: startSeconds, suggestedQuality: suggestedQuality)
     }
-   
+    
     /**
      * Loads a playlist of videos with the given video IDs. The |index| parameter specifies the
      * 0-indexed position of the first video to play, starting at the given time and with the
@@ -474,7 +475,7 @@ open class YTPlayerView: UIView {
     public func load(videoIds: [String], index: Int, startSeconds: Float, suggestedQuality: YTPlaybackQuality){
         self.loadPlaylist(cueingString: self.stringFromVideoIdArray(videoIds: videoIds), index: index, startSeconds: startSeconds, suggestedQuality: suggestedQuality)
     }
-  
+    
     //MARK:- Playing a video in a playlist
     
     // These methods correspond to the JavaScript API as defined under the
@@ -610,7 +611,7 @@ open class YTPlayerView: UIView {
         }
         return result
     }
- 
+    
     /**
      * Returns the state of the player. This method corresponds to the
      * JavaScript API defined here:
@@ -624,7 +625,7 @@ open class YTPlayerView: UIView {
         }
         return state
     }
-   
+    
     
     /**
      * Returns the elapsed time in seconds since the video started playing. This
@@ -639,7 +640,7 @@ open class YTPlayerView: UIView {
         }
         return result
     }
- 
+    
     
     //MARK:- Playback quality
     
@@ -656,10 +657,10 @@ open class YTPlayerView: UIView {
      */
     public var playbackQuality: YTPlaybackQuality{
         get{
-        guard let quality = YTPlaybackQuality(rawValue: self.stringFromEvaluatingJavaScript(jsToExecute: "player.getPlaybackQuality();")) else{
-            return .unknown
-        }
-        return quality
+            guard let quality = YTPlaybackQuality(rawValue: self.stringFromEvaluatingJavaScript(jsToExecute: "player.getPlaybackQuality();")) else{
+                return .unknown
+            }
+            return quality
         }
         set{
             let command = String(format: "player.setPlaybackQuality('%@');", playbackQuality.rawValue)
@@ -909,7 +910,7 @@ open class YTPlayerView: UIView {
             }else{
                 return false
             }
-           
+            
         } catch {
             // regex was bad!
             return false
@@ -947,10 +948,7 @@ open class YTPlayerView: UIView {
         }
         playerParams["events"] = playerCallbacks
         
-        if playerParams["playerVars"] != nil{
-            self.originURL = URL(string: "https://charmy.app")
-            
-        }else{
+        if playerParams["playerVars"] == nil{
             playerParams["playerVars"] = [String: Any]()
         }
         
@@ -958,15 +956,16 @@ open class YTPlayerView: UIView {
         self.webView = createNewWebView()
         self.addSubview(self.webView)
         self.webView.scalesPageToFit = true
-
+        
+        let path: String!
+        
+         path = Bundle.main.path(forResource: "YTPlayerView", ofType: "html")
+        
         let embedHTMLTemplate: String!
         
-
-        
-        if let url = NSURL(string: "https://charmy.app/YTPlayer.html") {
-            
+        if let filepath = path {
             do {
-                embedHTMLTemplate = try String(data:  NSData(contentsOf: url as URL) as Data, encoding: .utf8)
+                embedHTMLTemplate = try String(contentsOfFile: filepath)
             } catch(let err) {
                 print("Received error rendering template: ", err)
                 return false
@@ -1010,16 +1009,16 @@ open class YTPlayerView: UIView {
     }
     
     /**
-    * Private method for cueing both cases of playlist ID and array of video IDs. Cueing
-    * a playlist does not start playback.
-    *
-    * @param cueingString A JavaScript string representing an array, playlist ID or list of
-    *                     video IDs to play with the playlist player.
-    * @param index 0-index position of video to start playback on.
-    * @param startSeconds Seconds after start of video to begin playback.
-    * @param suggestedQuality Suggested YTPlaybackQuality to play the videos.
-    * @return The result of cueing the playlist.
-    */
+     * Private method for cueing both cases of playlist ID and array of video IDs. Cueing
+     * a playlist does not start playback.
+     *
+     * @param cueingString A JavaScript string representing an array, playlist ID or list of
+     *                     video IDs to play with the playlist player.
+     * @param index 0-index position of video to start playback on.
+     * @param startSeconds Seconds after start of video to begin playback.
+     * @param suggestedQuality Suggested YTPlaybackQuality to play the videos.
+     * @return The result of cueing the playlist.
+     */
     private func cuePlaylist(cueingString: String, index: Int, startSeconds: Float, suggestedQuality: YTPlaybackQuality ){
         let indexValue = NSNumber(integerLiteral: index).stringValue
         let startSecondsValue = NSNumber(value: startSeconds).stringValue
@@ -1028,7 +1027,7 @@ open class YTPlayerView: UIView {
         
         _ = self.stringFromEvaluatingJavaScript(jsToExecute: command)
     }
-
+    
     /**
      * Private method for loading both cases of playlist ID and array of video IDs. Loading
      * a playlist automatically starts playback.
@@ -1085,16 +1084,6 @@ extension YTPlayerView: UIWebViewDelegate{
     
     public func webView(_ webView: UIWebView, didFailLoadWithError error: Error){
         self.initialLoadingView?.removeFromSuperview()
-    }
-}
-
-extension Bundle{
-    class func frameworkBundle() -> Bundle?{
-        guard let mainBundlePath = Bundle(for: YTPlayerView.self).resourcePath else {
-            return nil
-        }
-        let frameworkBundlePath = mainBundlePath.appending("/youtube-ios-player-helper-swift.bundle")
-        return Bundle(path: frameworkBundlePath)
     }
 }
 

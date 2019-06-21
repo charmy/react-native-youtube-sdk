@@ -17,6 +17,8 @@ import UIKit
     @objc var onChangeFullscreen: RCTDirectEventBlock?
     
     @objc var autoPlay: Bool = false;
+
+    var initialized = false;
     
     var playerVars:[String: Any] = [
         "controls" : "0",
@@ -44,13 +46,7 @@ import UIKit
         }
     }
     
-    @objc var videoId: NSString = "" {
-        didSet{
-            if videoId != ""{
-                _ = player.load(videoId: videoId as String, playerVars: playerVars)
-            }
-        }
-    }
+    @objc var videoId: NSString = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,19 +80,20 @@ import UIKit
     
     lazy var player: YTPlayerView = {
         let playerView = YTPlayerView(frame: frame)
+
+        playerView.originURL = URL(string: "https://www.youtube.com")
+        
         playerView.delegate = self
         return playerView
     }()
     
     
     @objc func play() {
-        if player.playerState != .playing{
-            player.playVideo()
-        }
+        player.playVideo()
     }
     
     @objc func pause() {
-        if player.playerState == .playing{
+        if self.initialized {
             player.pauseVideo()
         }
     }
@@ -132,7 +129,8 @@ extension YouTubeView: YTPlayerViewDelegate{
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         //player is ready to go
         onReady!(["type" : "ready"])
-        if autoPlay{
+        
+        if autoPlay {
             playerView.playVideo()
         }
     }
@@ -142,13 +140,15 @@ extension YouTubeView: YTPlayerViewDelegate{
         ["state" :
             {
                 switch state {
-                case .unstarted:  return "unstarted"
-                case .ended:  return "ended"
-                case .playing:  return "playing"
-                case .paused:  return"paused"
-                case .buffering:  return "buffering"
-                case .queued:  return "queued"
-                case .unknown:  return "unknown"
+                case .unstarted:  return "UNSTARTED"
+                case .ended:  return "ENDED"
+                case .playing:
+                    self.initialized = true;
+                    return "PLAYING"
+                case .paused:  return"PAUSED"
+                case .buffering:  return "BUFFERING"
+                case .queued:  return "QERUED"
+                case .unknown:  return "UNKNOWN"
                 }
             }()
         ])
