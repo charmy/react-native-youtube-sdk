@@ -8,7 +8,7 @@
 ## Progress
 
 - [x] ios (implemented %99 using https://github.com/malkouz/youtube-ios-player-helper-swift) 
-- [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
+- [x] android (implemented https://github.com/PierfrancescoSoffritti/android-youtube-player)
 
 ## Note
 - your android app needs to be using the androidx libraries instead of the old support libraries.
