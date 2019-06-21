@@ -13,6 +13,11 @@
 ## Note
 - your android app needs to be using the androidx libraries instead of the old support libraries.
 - iOS under development but you can use
+
+## Video is unavailable problem
+- Origin is already set up in the library but you will notice that some videos are not playing. This is because the video is shared as not embeddable by provider. 
+- You can use YouTube Data API to solve this problem
+- Do not open an issue related to this
 ## Getting started
 
 `$ npm install react-native-youtube-sdk --save`
@@ -26,7 +31,8 @@
 1. Drag drop `assets/YTPlayerView.html` to your iOS project
 2. Create a blank Swift file with bridge file in your project (to build swift code easily)
 ![ios example](./example/example-ios.png)
-`soon there will be easier implementation`
+
+\`soon there will be easier implementation`
 
 ### Manual installation
 
