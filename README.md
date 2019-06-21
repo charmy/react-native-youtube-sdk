@@ -7,7 +7,7 @@
 
 ## Progress
 
-- [x] ios (implemented %99) 
+- [x] ios (implemented %99 using https://github.com/malkouz/youtube-ios-player-helper-swift) 
 - [x] android (implemented 'com.pierfrancescosoffritti.androidyoutubeplayer')
 
 ## Note
@@ -20,6 +20,13 @@
 ### Mostly automatic installation
 
 `$ react-native link react-native-youtube-sdk`
+
+#### iOS
+
+1. Drag drop `assets/YTPlayerView.html` to your iOS project
+2. Create a blank Swift file with bridge file in your project (to build swift code easily)
+![ios example](./example/example-ios.png)
+`soon there will be easier implementation`
 
 ### Manual installation
 
