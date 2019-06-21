@@ -160,8 +160,8 @@ const styles = StyleSheet.create({
 
 | Prop                 | Required | Type     | Default value | Description                                                                                    |
 |----------------------|----------|----------|---------------|------------------------------------------------------------------------------------------------|
-| videoId              | true     | string   |               | YouTube video id                                                                               |
-| autoPlay             | false    | bool     | false         | Plays when player on ready                                                                     |
+| videoId              | false    | string   |               | YouTube video id                                                                               |
+| autoPlay             | false    | bool     | false         | Plays when video loaded                                                                     |
 | fullscreen           | false    | bool     | false         | The video is play in fullscreen                                                                | 
 | showFullScreenButton | false    | bool     | false         | Show or hide fullscreen button                                                                 |
 | showSeekBar          | false    | bool     | true          | Show or hide seekbar                                                                           |
