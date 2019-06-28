@@ -8,7 +8,7 @@ const { YouTubeSdk } = NativeModules;
 export default class YouTubePlayer extends React.Component {
   seekTo(seconds) {
     if (typeof seconds !== "number") {
-      throw new Error("missing parameter: seconds");
+      throw new Error("invalid parameter: seconds");
     }
 
     UIManager.dispatchViewManagerCommand(
