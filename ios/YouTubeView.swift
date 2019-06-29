@@ -45,8 +45,12 @@ import UIKit
             self.player.isUserInteractionEnabled = showSeekBar
         }
     }
-    
-    @objc var videoId: NSString = ""
+   
+    @objc var videoId: NSString = "" {
+        didSet {
+            _ = player.load(videoId: videoId as String,  playerVars: playerVars)
+        }
+    } 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
