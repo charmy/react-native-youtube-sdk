@@ -5,14 +5,8 @@
 
 ![Example Gif](https://sharelist2me.s3-eu-west-1.amazonaws.com/repo/example.gif)
 
-## Progress
-
-- [x] ios (implemented %99 using https://github.com/malkouz/youtube-ios-player-helper-swift) 
-- [x] android (implemented https://github.com/PierfrancescoSoffritti/android-youtube-player)
-
 ## Note
-- your android app needs to be using the androidx libraries instead of the old support libraries.
-- iOS under development but you can use
+- Your android app needs to be using the androidx libraries instead of the old support libraries.
 
 ## Video is unavailable problem
 - Origin is already set up in the library but you will notice that some videos are not playing. This is because the video is shared as not embeddable by provider. 
@@ -29,10 +23,17 @@
 #### iOS
 
 1. Drag drop `assets/YTPlayerView.html` to your iOS project
-2. Create a blank Swift file with bridge file in your project (to build swift code easily)
+2. Create a blank Swift file with bridge in your project (to build swift code easily)
 ![ios example](./example/example-ios.png)
 
-\`soon there will be easier implementation`
+### With CocoaPods (RN > 0.60)
+
+1. `$ react-native link react-native-youtube-sdk`
+2. `$ cd /ios`
+3. `$ pod install`
+4. Create a blank Swift file with bridge in your project (to build swift code easily)
+5. Have fun
+
 
 ### Manual installation
 
@@ -181,5 +182,10 @@ const styles = StyleSheet.create({
 | pause            |                    | void    | pause the video                                                        |
 | loadVideo        | videoId, startTime | void    | load a video to the player                                             |
 | getCurrentTime   |                    | promise | Returns promise that results with the current time of the played video |
-| getVideoDuration |                    | promise | Returns promise that results with the duration of the played video     |
+| getVideoDuration |                    | promise | Returns promise that results with the duration of the played video    
+
+
+- [x] iOS (https://github.com/malkouz/youtube-ios-player-helper-swift) 
+- [x] Android ('com.pierfrancescosoffritti.androidyoutubeplayer')
+ |
  
