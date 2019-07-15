@@ -7,8 +7,8 @@ const { YouTubeSdk } = NativeModules;
 
 export default class YouTubePlayer extends React.Component {
   seekTo(seconds) {
-    if (!seconds) {
-      throw new Error("missing parameter: seconds");
+    if (typeof seconds !== "number") {
+      throw new Error("invalid parameter: seconds");
     }
 
     UIManager.dispatchViewManagerCommand(
@@ -74,7 +74,7 @@ export default class YouTubePlayer extends React.Component {
 }
 
 YouTubePlayer.propTypes = {
-  videoId: PropTypes.string.isRequired,
+  videoId: PropTypes.string,
   autoPlay: PropTypes.bool,
   fullscreen: PropTypes.bool,
   startTime: PropTypes.number,

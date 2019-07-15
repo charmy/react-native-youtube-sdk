@@ -5,7 +5,6 @@
 
 ![Example Gif](https://sharelist2me.s3-eu-west-1.amazonaws.com/repo/example.gif)
 
-
 ## Note
 - Your android app needs to be using the androidx libraries instead of the old support libraries.
 
@@ -162,8 +161,8 @@ const styles = StyleSheet.create({
 
 | Prop                 | Required | Type     | Default value | Description                                                                                    |
 |----------------------|----------|----------|---------------|------------------------------------------------------------------------------------------------|
-| videoId              | true     | string   |               | YouTube video id                                                                               |
-| autoPlay             | false    | bool     | false         | Plays when player on ready                                                                     |
+| videoId              | false    | string   |               | YouTube video id                                                                               |
+| autoPlay             | false    | bool     | false         | Plays when video loaded                                                                     |
 | fullscreen           | false    | bool     | false         | The video is play in fullscreen                                                                | 
 | showFullScreenButton | false    | bool     | false         | Show or hide fullscreen button                                                                 |
 | showSeekBar          | false    | bool     | true          | Show or hide seekbar                                                                           |
