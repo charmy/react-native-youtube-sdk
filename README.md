@@ -162,13 +162,13 @@ const styles = StyleSheet.create({
 | Prop                 | Required | Type     | Default value | Description                                                                                    |
 |----------------------|----------|----------|---------------|------------------------------------------------------------------------------------------------|
 | videoId              | false    | string   |               | YouTube video id                                                                               |
-| autoPlay             | false    | bool     | false         | Plays when video loaded                                                                     |
+| autoPlay             | false    | bool     | false         | Plays when video loaded                                                                        |
 | fullscreen           | false    | bool     | false         | The video is play in fullscreen                                                                | 
 | showFullScreenButton | false    | bool     | false         | Show or hide fullscreen button                                                                 |
 | showSeekBar          | false    | bool     | true          | Show or hide seekbar                                                                           |
 | showPlayPauseButton  | false    | bool     | true          | Show or hide play/pause button                                                                 |
 | startTime            | false    | number   | 0             | start time of video for first play                                                             |
-| onReady              | false    | func     |               | triggered when the player ready    
+| onReady              | false    | func     |               | triggered when the player ready                                                                |
 | onError              | false    | func     |               | triggered when error occurs                                                                    |
 | onChangeState        | false    | func     |               | triggered when the state changes (UNKNOWN/UNSTARTED/ENDED/PLAYING/PAUSED/BUFFERING/VIDEO_CUED) |
 | onChangeFullscreen   | false    | func     |               | triggered when the player enters or exits the fullscreen mode                                  |
@@ -182,10 +182,8 @@ const styles = StyleSheet.create({
 | pause            |                    | void    | pause the video                                                        |
 | loadVideo        | videoId, startTime | void    | load a video to the player                                             |
 | getCurrentTime   |                    | promise | Returns promise that results with the current time of the played video |
-| getVideoDuration |                    | promise | Returns promise that results with the duration of the played video    
+| getVideoDuration |                    | promise | Returns promise that results with the duration of the played video     |  
 
 
 - [x] iOS (https://github.com/malkouz/youtube-ios-player-helper-swift) 
-- [x] Android ('com.pierfrancescosoffritti.androidyoutubeplayer')
- |
- 
+- [x] Android (https://github.com/PierfrancescoSoffritti/android-youtube-player)
