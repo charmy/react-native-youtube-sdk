@@ -17,9 +17,9 @@ import UIKit
     @objc var onChangeFullscreen: RCTDirectEventBlock?
     
     @objc var autoPlay: Bool = false;
-
-    var initialized = false;
     
+    var initialized = false;
+    var lock = false;
     var playerVars:[String: Any] = [
         "controls" : "0",
         "showinfo" : "0",
@@ -45,28 +45,45 @@ import UIKit
             self.player.isUserInteractionEnabled = showSeekBar
         }
     }
-   
+    
     @objc var videoId: NSString = "" {
         didSet {
             _ = player.load(videoId: videoId as String,  playerVars: playerVars)
         }
-    } 
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(player)
         
-        // listen for videos playing in fullscreen
         NotificationCenter.default.addObserver(self, selector: #selector(onDidEnterFullscreen(_:)), name: UIWindow.didBecomeVisibleNotification, object: self.window)
         
-        // listen for videos stopping to play in fullscreen
         NotificationCenter.default.addObserver(self, selector: #selector(onDidLeaveFullscreen(_:)), name: UIWindow.didBecomeHiddenNotification, object: self.window)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willResignActive), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     deinit{
-        // remove video listeners
         NotificationCenter.default.removeObserver(self, name: UIWindow.didBecomeVisibleNotification, object: self.window)
+        
         NotificationCenter.default.removeObserver(self, name: UIWindow.didBecomeHiddenNotification, object: self.window)
+        
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func willResignActive(_ notification: Notification) {
+        lock = true
+        if player.playerState == .playing {
+            player.pauseVideo();
+        }
+    }
+    
+    @objc func appMovedToForeground() {
+        lock = false;
     }
     
     @objc func reactSetFrame(frame:CGRect) {
@@ -84,9 +101,7 @@ import UIKit
     
     lazy var player: YTPlayerView = {
         let playerView = YTPlayerView(frame: frame)
-
         playerView.originURL = URL(string: "https://www.youtube.com")
-        
         playerView.delegate = self
         return playerView
     }()
@@ -103,11 +118,11 @@ import UIKit
     }
     
     @objc func seekTo(seconds: NSInteger) {
-       player.seek(seekToSeconds: Float(seconds), allowSeekAhead: true)
+        player.seek(seekToSeconds: Float(seconds), allowSeekAhead: true)
     }
     
     @objc func LoadVideo(videoId: NSString, seconds: NSInteger) {
-         _ = player.load(videoId: videoId as String,  playerVars: playerVars)
+        _ = player.load(videoId: videoId as String,  playerVars: playerVars)
     }
     
     @objc func getCurrentTime() -> NSInteger{
@@ -119,21 +134,17 @@ import UIKit
     }
     
     @objc func onDidEnterFullscreen(_ notification: Notification) {
-        print("video is now playing in fullscreen")
         onChangeFullscreen!(["isFullscreen" : true])
     }
     
     @objc func onDidLeaveFullscreen(_ notification: Notification) {
-        print("video has stopped playing in fullscreen")
         onChangeFullscreen!(["isFullscreen" : false])
     }
 }
 
 extension YouTubeView: YTPlayerViewDelegate{
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        //player is ready to go
         onReady!(["type" : "ready"])
-        
         if autoPlay {
             playerView.playVideo()
         }
@@ -141,21 +152,24 @@ extension YouTubeView: YTPlayerViewDelegate{
     
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState){
         onChangeState!(
-        ["state" :
-            {
-                switch state {
-                case .unstarted:  return "UNSTARTED"
-                case .ended:  return "ENDED"
-                case .playing:
-                    self.initialized = true;
-                    return "PLAYING"
-                case .paused:  return"PAUSED"
-                case .buffering:  return "BUFFERING"
-                case .queued:  return "QERUED"
-                case .unknown:  return "UNKNOWN"
-                }
+            ["state" :
+                {
+                    switch state {
+                    case .unstarted:  return "UNSTARTED"
+                    case .ended:  return "ENDED"
+                    case .playing:
+                        self.initialized = true;
+                        if lock{
+                            player.pauseVideo();
+                        }
+                        return "PLAYING"
+                    case .paused:  return"PAUSED"
+                    case .buffering:  return "BUFFERING"
+                    case .queued:  return "QERUED"
+                    case .unknown:  return "UNKNOWN"
+                    }
             }()
-        ])
+            ])
     }
     
     func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
