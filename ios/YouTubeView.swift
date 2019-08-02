@@ -165,7 +165,7 @@ extension YouTubeView: YTPlayerViewDelegate{
                         return "PLAYING"
                     case .paused:  return"PAUSED"
                     case .buffering:  return "BUFFERING"
-                    case .queued:  return "QERUED"
+                    case .queued:  return "QUEUED"
                     case .unknown:  return "UNKNOWN"
                     }
             }()
