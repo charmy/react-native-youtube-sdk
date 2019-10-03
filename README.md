@@ -28,11 +28,10 @@
 
 ### With CocoaPods (RN > 0.60)
 
-1. `$ react-native link react-native-youtube-sdk`
+1. Create a blank Swift file with bridge in your project (you can name it whatever you want) (to build swift code easily)
 2. `$ cd /ios`
 3. `$ pod install`
-4. Create a blank Swift file with bridge in your project (to build swift code easily)
-5. Have fun
+4. Have fun
 
 
 ### Manual installation
