@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, View, TouchableOpacity, Text, ToastAndroid , Alert} from "react-native";
-import YouTubePlayer from "./lib/YouTubePlayer";
+import YouTubePlayer from "react-native-youtube-sdk";
 
 export default class App extends React.Component {
   render() {
