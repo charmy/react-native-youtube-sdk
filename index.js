@@ -1,4 +1,4 @@
 import React from "react";
-import YouTubePlayer from "./example/lib/YouTubePlayer";
+import YouTubePlayer from "./YouTubePlayer";
 
 export default YouTubePlayer;
