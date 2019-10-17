@@ -1,0 +1,3 @@
+i have made some changes in example so that new users can easily understand what is happening here in example.
+i have removed the libs folder & its file YouTubePlayer.js from example and put YouTubePlayer.js file in plugin's root.
+now example is purly as example project. i also made some changes in plugin please watch them its perfectly working in my project.
