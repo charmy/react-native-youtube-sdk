@@ -22,7 +22,7 @@ import UIKit
     var lock = false;
     var playerVars:[String: Any] = [
         "controls" : "0",
-        "showinfo" : "0",
+        "showinfo" : "",
         "autoplay": "0",
         "rel": "0",
         "modestbranding": "1",
