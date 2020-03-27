@@ -2,8 +2,8 @@
 //  YouTubeViewManager.swift
 //  YouTubeSdk
 //
-//  Created by Buğra Göçer on 31.05.2019.
-//  Copyright © 2019 Facebook. All rights reserved.
+//  Created by Bugra Ozgursoy on 31.05.2019.
+//  Copyright © 2020 Bugra Ozgursoy. All rights reserved.
 //
 
 @objc(YouTubeViewManager)

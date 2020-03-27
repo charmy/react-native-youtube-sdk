@@ -2,8 +2,8 @@
 //  YouTubeView.swift
 //  YouTubeSdk
 //
-//  Created by Buğra Göçer on 31.05.2019.
-//  Copyright © 2019 Facebook. All rights reserved.
+//  Created by Bugra Ozgursoy on 31.05.2019.
+//  Copyright © 2020 Bugra Ozgursoy. All rights reserved.
 //
 
 
@@ -23,7 +23,7 @@ import YoutubePlayerView
     var lock = false;
     var playerVars:[String: Any] = [
         "controls" : "0",
-        "showinfo" : "0",
+        "showinfo" : "",
         "autoplay": "0",
         "rel": "0",
         "modestbranding": "1",
@@ -105,7 +105,6 @@ import YoutubePlayerView
     
     lazy var player: YoutubePlayerView = {
         let playerView = YoutubePlayerView(frame: frame)
-        //playerView.originURL = URL(string: "https://www.youtube.com")
         playerView.delegate = self
         return playerView
     }()
