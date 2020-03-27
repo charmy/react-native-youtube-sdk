@@ -14,9 +14,10 @@ Pod::Spec.new do |s|
 
   s.platform               = :ios, '9.0'
   s.ios.deployment_target  = '9.0'
+  s.swift_version = '5.0'
 
   s.preserve_paths         = 'LICENSE', 'package.json'
   s.source_files           = 'ios/*.{h,m,swift}'
   s.dependency               'React'
-  s.resources      = ['assets/YTPlayerView.html']
+  s.dependency               'YoutubePlayerView'
 end

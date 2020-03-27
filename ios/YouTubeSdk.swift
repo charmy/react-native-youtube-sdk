@@ -24,7 +24,7 @@ class YouTubeSdk: RCTViewManager {
                 forReactTag: node
                 ) as! YouTubeView
             
-            resolve(component.getCurrentTime());
+            component.getCurrentTime(resolver: resolve);
         }
     }
     
@@ -39,7 +39,7 @@ class YouTubeSdk: RCTViewManager {
                 forReactTag: node
                 ) as! YouTubeView
             
-            resolve(component.getVideoDuration());
+            component.getVideoDuration(resolver: resolve);
         }
     }
 }
