@@ -183,6 +183,7 @@ const styles = StyleSheet.create({
 | getCurrentTime   |                    | promise | Returns promise that results with the current time of the played video |
 | getVideoDuration |                    | promise | Returns promise that results with the duration of the played video     |  
 
-
-- [x] iOS (https://github.com/malkouz/youtube-ios-player-helper-swift) 
+Thanks
+- [x] >= 1.0.6 iOS (https://github.com/mukeshydv/YoutubePlayerView) 
+- [x] <= 1.0.4- iOS (https://github.com/malkouz/youtube-ios-player-helper-swift) 
 - [x] Android (https://github.com/PierfrancescoSoffritti/android-youtube-player)
