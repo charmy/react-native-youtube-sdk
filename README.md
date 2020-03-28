@@ -20,13 +20,7 @@
 
 `$ react-native link react-native-youtube-sdk`
 
-#### iOS
-
-1. Drag drop `assets/YTPlayerView.html` to your iOS project
-2. Create a blank Swift file with bridge in your project (to build swift code easily)
-![ios example](./example/example-ios.png)
-
-### With CocoaPods (RN > 0.60)
+#### iOS With CocoaPods
 
 1. Create a blank Swift file with bridge in your project (you can name it whatever you want) (to build swift code easily)
 2. `$ cd /ios`
