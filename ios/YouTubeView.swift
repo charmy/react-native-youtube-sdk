@@ -2,12 +2,13 @@
 //  YouTubeView.swift
 //  YouTubeSdk
 //
-//  Created by Buğra Göçer on 31.05.2019.
-//  Copyright © 2019 Facebook. All rights reserved.
+//  Created by Bugra Ozgursoy on 31.05.2019.
+//  Copyright © 2020 Bugra Ozgursoy. All rights reserved.
 //
 
 
 import UIKit
+import YoutubePlayerView
 
 @objc class YouTubeView: UIView {
     
@@ -48,7 +49,7 @@ import UIKit
     
     @objc var videoId: NSString = "" {
         didSet {
-            _ = player.load(videoId: videoId as String,  playerVars: playerVars)
+            player.loadWithVideoId(videoId as String, with : playerVars)
         }
     }
     
@@ -77,9 +78,12 @@ import UIKit
     
     @objc func willResignActive(_ notification: Notification) {
         lock = true
-        if player.playerState == .playing {
-            player.pauseVideo();
-        }
+        
+        player.fetchPlayerState({ (state) in
+            if state == .playing{
+                self.player.pause()
+            }
+        })
     }
     
     @objc func appMovedToForeground() {
@@ -99,38 +103,41 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var player: YTPlayerView = {
-        let playerView = YTPlayerView(frame: frame)
-        playerView.originURL = URL(string: "https://www.youtube.com")
+    lazy var player: YoutubePlayerView = {
+        let playerView = YoutubePlayerView(frame: frame)
         playerView.delegate = self
         return playerView
     }()
     
     
     @objc func play() {
-        player.playVideo()
+        player.play()
     }
     
     @objc func pause() {
         if self.initialized {
-            player.pauseVideo()
+            player.pause()
         }
     }
     
     @objc func seekTo(seconds: NSInteger) {
-        player.seek(seekToSeconds: Float(seconds), allowSeekAhead: true)
+        player.seek(to: Float(seconds), allowSeekAhead: true)
     }
     
     @objc func LoadVideo(videoId: NSString, seconds: NSInteger) {
-        _ = player.load(videoId: videoId as String,  playerVars: playerVars)
+        player.loadWithVideoId(videoId as String, with : playerVars)
     }
     
-    @objc func getCurrentTime() -> NSInteger{
-        return NSInteger(player.currentTime)
+    @objc func getCurrentTime(resolver resolve: @escaping RCTPromiseResolveBlock){
+           self.player.fetchCurrentTime( { (time) in
+            resolve(NSInteger(Int(time ?? 0)))
+       })
     }
-    
-    @objc func getVideoDuration() -> NSInteger{
-        return NSInteger(player.duration)
+
+    @objc func getVideoDuration(resolver resolve: @escaping RCTPromiseResolveBlock){
+           self.player.fetchDuration( { (time) in
+            resolve(NSInteger(Int(time ?? 0)))
+       })
     }
     
     @objc func onDidEnterFullscreen(_ notification: Notification) {
@@ -142,15 +149,15 @@ import UIKit
     }
 }
 
-extension YouTubeView: YTPlayerViewDelegate{
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        onReady!(["type" : "ready"])
+extension YouTubeView: YoutubePlayerViewDelegate{
+    
+    func playerViewDidBecomeReady(_ playerView: YoutubePlayerView) {
         if autoPlay {
-            playerView.playVideo()
+            playerView.play()
         }
     }
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState){
+    func playerView(_ playerView: YoutubePlayerView, didChangedToState state: YoutubePlayerState){
         onChangeState!(
             ["state" :
                 {
@@ -160,7 +167,7 @@ extension YouTubeView: YTPlayerViewDelegate{
                     case .playing:
                         self.initialized = true;
                         if lock{
-                            player.pauseVideo();
+                            player.pause();
                         }
                         return "PLAYING"
                     case .paused:  return"PAUSED"
@@ -172,8 +179,8 @@ extension YouTubeView: YTPlayerViewDelegate{
             ])
     }
     
-    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
-        onError!(["error" : error.rawValue])
+    func playerView(_ playerView: YoutubePlayerView, receivedError error: Error) {
+        onError!(["error" : error])
     }
     
 }
