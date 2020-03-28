@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage               = package['homepage']
   s.license                = package['license']
   s.author                 = package['author']
-  s.source                 = { :git => 'https://github.com/srfaytkn/react-native-youtube-sdk.git', :tag => "master" }
+  s.source                 = { :git => 'https://github.com/up-inside/react-native-youtube-sdk.git', :tag => "master" }
 
   s.platform               = :ios, '9.0'
   s.ios.deployment_target  = '9.0'
