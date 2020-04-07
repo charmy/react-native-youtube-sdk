@@ -21,6 +21,6 @@
     "youtube"
   ],
   "peerDependencies": {
-    "react-native": "0.59.8"
+    "react-native": "^0.62.1"
   }
 }

@@ -1,41 +1,4 @@
-const fs = require("fs");
-const prettierOptions = JSON.parse(fs.readFileSync("./.prettierrc", "utf8"));
-
 module.exports = {
-  parser: "babel-eslint",
-  extends: ["airbnb", "prettier", "prettier/react"],
-  plugins: ["prettier", "react", "react-native"],
-  env: {
-    browser: true,
-  },
-  rules: {
-    "prettier/prettier": ["error", prettierOptions],
-    "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
-    "react/prefer-stateless-function": "off",
-    "react/no-array-index-key": "off",
-    "react/prop-types": "off",
-    "react/forbid-prop-types": "off",
-    "react/require-default-props": "off",
-    "react/jsx-boolean-value": "off",
-    "react/no-did-update-set-state": "off",
-    "react/destructuring-assignment": "off",
-    "react/no-access-state-in-setstate": "off",
-    "react/no-unused-prop-types": "off",
-    "linebreak-style": "off",
-    "global-require": "off",
-    "import/no-unresolved": "off",
-    "import/extensions": "off",
-    "import/prefer-default-export": "off",
-    "import/no-extraneous-dependencies": "off",
-    "class-methods-use-this": "off",
-    "no-undef": "off",
-    "no-param-reassign": "off",
-    "prefer-destructuring": "off",
-    "no-shadow": "off",
-    "dot-notation": "off",
-    "no-return-assign": "off",
-    "no-debugger": "off",
-    "default-case": "off",
-    "camelcase": "off",
-  },
+  root: true,
+  extends: '@react-native-community',
 };
