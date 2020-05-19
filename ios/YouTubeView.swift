@@ -30,7 +30,8 @@ import YoutubePlayerView
         "iv_load_policy" : "3",
         "fs": "0",
         "ecver" : "2",
-        "playsinline" : "1"
+        "playsinline" : "1",
+        "origin": "https://youtube.com"
     ]
     
     @objc var fullscreen: Bool = false {
