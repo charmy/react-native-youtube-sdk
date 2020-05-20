@@ -4,13 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerError;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+
 import javax.annotation.Nonnull;
 
 public class FullscreenPlayerActivity extends AppCompatActivity {
@@ -61,7 +64,12 @@ public class FullscreenPlayerActivity extends AppCompatActivity {
           currentSecond = youTubePlayerProps.getStartTime();
         }
 
-        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), currentSecond);
+        if (youTubePlayerProps.isAutoPlay()) {
+          youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), currentSecond);
+        } else {
+          youTubePlayer.cueVideo(youTubePlayerProps.getVideoId(), currentSecond);
+        }
+
         youTubePlayer.addListener(youTubePlayerProps.getTracker());
       }
 
