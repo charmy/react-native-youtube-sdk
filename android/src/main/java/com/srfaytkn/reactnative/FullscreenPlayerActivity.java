@@ -64,12 +64,7 @@ public class FullscreenPlayerActivity extends AppCompatActivity {
           currentSecond = youTubePlayerProps.getStartTime();
         }
 
-        if (youTubePlayerProps.isAutoPlay()) {
-          youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), currentSecond);
-        } else {
-          youTubePlayer.cueVideo(youTubePlayerProps.getVideoId(), currentSecond);
-        }
-
+        youTubePlayer.loadVideo(youTubePlayerProps.getVideoId(), currentSecond);
         youTubePlayer.addListener(youTubePlayerProps.getTracker());
       }
 

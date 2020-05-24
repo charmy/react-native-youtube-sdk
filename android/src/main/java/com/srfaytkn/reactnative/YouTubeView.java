@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
@@ -15,6 +17,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
+
 import javax.annotation.Nonnull;
 
 
@@ -87,10 +90,6 @@ public class YouTubeView extends FrameLayout {
           youTubePlayer
               .cueVideo(youTubePlayerProps.getVideoId(), youTubePlayerProps.getStartTime());
         }
-
-        if (youTubePlayerProps.isFullscreen()) {
-          youTubePlayerView.enterFullScreen();
-        }
       }
 
       @Override
@@ -101,6 +100,13 @@ public class YouTubeView extends FrameLayout {
       @Override
       public void onStateChange(@Nonnull YouTubePlayer youTubePlayer, @Nonnull PlayerState state) {
         onChangeStateEvent(String.valueOf(state));
+
+        if (state == PlayerState.PLAYING) {
+          if (youTubePlayerProps.isFullscreen()) {
+            youTubePlayerView.enterFullScreen();
+            youTubePlayerProps.setFullscreen(false);
+          }
+        }
       }
     });
 
