@@ -22,7 +22,7 @@ import YoutubePlayerView
     var initialized = false;
     var lock = false;
     var playerVars:[String: Any] = [
-        "controls" : "0",
+        "controls" : "1",
         "showinfo" : "",
         "autoplay": "0",
         "rel": "0",
@@ -31,7 +31,7 @@ import YoutubePlayerView
         "fs": "0",
         "ecver" : "2",
         "playsinline" : "1",
-        "origin": "https://youtube.com"
+        "origin": "https://youtube.com",
     ]
     
     @objc var fullscreen: Bool = false {
@@ -45,6 +45,13 @@ import YoutubePlayerView
         didSet{
             playerVars["controls"] = (showSeekBar) ? "1" : "0";
             self.player.isUserInteractionEnabled = showSeekBar
+        }
+    }
+    
+    @objc var showFullScreenButton: Bool = false {
+        didSet{
+            playerVars["fs"] = (showFullScreenButton) ? "1" : "0";
+            playerVars["showinfo"] = (showFullScreenButton) ? "" : "0";
         }
     }
     
@@ -142,11 +149,15 @@ import YoutubePlayerView
     }
     
     @objc func onDidEnterFullscreen(_ notification: Notification) {
-        onChangeFullscreen!(["isFullscreen" : true])
+        if initialized{
+            onChangeFullscreen!(["isFullscreen" : true])
+        }
     }
     
     @objc func onDidLeaveFullscreen(_ notification: Notification) {
-        onChangeFullscreen!(["isFullscreen" : false])
+        if initialized{
+            onChangeFullscreen!(["isFullscreen" : false])
+        }
     }
 }
 
