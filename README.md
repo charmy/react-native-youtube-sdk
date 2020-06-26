@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
 | showFullScreenButton | false    | bool     | false         | Show or hide fullscreen button                                                                 |
 | showSeekBar          | false    | bool     | true          | Show or hide seekbar                                                                           |
 | showPlayPauseButton  | false    | bool     | true          | Show or hide play/pause button                                                                 |
+| enableBackgroundPlayback  | false    | bool     | true          | Show or hide play/pause button                                                               |
 | startTime            | false    | number   | 0             | start time of video for first play                                                             |
 | onReady              | false    | func     |               | triggered when the player ready                                                                |
 | onError              | false    | func     |               | triggered when error occurs                                                                    |
