@@ -19,5 +19,11 @@
   "keywords": [
     "react-native",
     "youtube"
-  ]
+  ],
+  "peerDependencies": {
+    "react-native": ">=0.63"
+  },
+  "devDependencies": {
+    "react-native": "0.66"
+  }
 }
